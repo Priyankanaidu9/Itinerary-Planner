@@ -1,0 +1,74 @@
+.saved-trips {
+  padding: 2rem;
+  max-width: 1000px;
+  margin: auto;
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  background-color: #fdfdfd;
+}
+
+.saved-trips h1 {
+  color: #2b6cb0;
+  margin-bottom: 2rem;
+}
+
+.saved-trips p {
+  font-size: 1.1rem;
+  color: #666;
+}
+
+.saved-destinations {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.destination-card {
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.destination-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+
+.destination-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+}
+
+.destination-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: #2b6cb0;
+}
+
+.destination-card p {
+  font-size: 0.95rem;
+  color: #555;
+}
+.clear-button {
+  background-color: #e74c3c;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.clear-button:hover {
+  background-color: #c0392b;
+}
