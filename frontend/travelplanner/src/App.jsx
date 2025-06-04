@@ -1,21 +1,31 @@
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  Navigate,
+  useLocation,
+} from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import Home from "./pages/Home";
-import Signup from "./pages/SignUp"; // ✅ Correct Signup component
+import Signup from "./pages/SignUp";
 import Explore from "./pages/Explore";
 import SavedTrips from "./pages/SavedTrips";
 import Profile from "./pages/Profile";
 import Login from "./pages/Login";
 import { auth } from "./firebase";
 import { onAuthStateChanged, signOut } from "firebase/auth";
-import './App.css'; // ✅ Import the CSS
+import ChatbaseBot from "./components/ChatbaseBot";
+import './App.css';
 
-const App = () => {
+// Helper component to access location inside Router
+const AppContent = () => {
   const [savedPlaces, setSavedPlaces] = useState([]);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
+  const location = useLocation();
 
-  // ✅ Monitor login/logout
+  // Monitor login/logout
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -38,7 +48,7 @@ const App = () => {
   };
 
   return (
-    <Router>
+    <>
       <nav className="navbar">
         <div className="nav-left">
           <Link to="/">Home</Link>
@@ -63,25 +73,34 @@ const App = () => {
           ) : (
             <>
               <Link to="/login">Login</Link>
-              <Link to="/signup">Sign Up</Link> {/* ✅ Added Signup link */}
+              <Link to="/signup">Sign Up</Link>
             </>
           )}
         </div>
       </nav>
 
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={isAuthenticated ? <Home /> : <Navigate to="/login" />} />
         <Route
           path="/explore"
           element={<Explore savedPlaces={savedPlaces} setSavedPlaces={setSavedPlaces} />}
         />
-        <Route path="/saved-trips" element={<SavedTrips savedPlaces={savedPlaces} />} />
-        <Route path="/profile" element={isAuthenticated ? <Profile /> : <Login />} />
+        <Route path="/saved-trips" element={isAuthenticated ? <SavedTrips user={user} /> : <Navigate to="/login" />} />
+        <Route path="/profile" element={isAuthenticated ? <Profile /> : <Navigate to="/login" />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} /> {/* ✅ Correct Signup route */}
+        <Route path="/signup" element={<Signup />} />
       </Routes>
-    </Router>
+
+      {/* ✅ Show chatbot only if not on /login or /signup */}
+      {location.pathname !== "/login" && location.pathname !== "/signup" && <ChatbaseBot />}
+    </>
   );
 };
+
+const App = () => (
+  <Router>
+    <AppContent />
+  </Router>
+);
 
 export default App;

@@ -1,74 +1,81 @@
-.saved-trips {
-  padding: 2rem;
-  max-width: 1000px;
-  margin: auto;
-  text-align: center;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #333;
-  background-color: #fdfdfd;
+.saved-trips-container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* center align cards */
+  gap: 20px;
 }
 
-.saved-trips h1 {
-  color: #2b6cb0;
-  margin-bottom: 2rem;
-}
-
-.saved-trips p {
-  font-size: 1.1rem;
-  color: #666;
-}
-
-.saved-destinations {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-  margin-top: 1rem;
-}
-
-.destination-card {
-  background-color: #fff;
-  padding: 1rem;
+.trip-card {
+  background-color: #f5f5f5; /* soft light grey */
+  padding: 20px;
   border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  text-align: left;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  width: 60%; /* responsive width */
+  transition: box-shadow 0.3s ease-in-out, transform 0.2s ease-in-out;
 }
 
-.destination-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+.trip-card:hover {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  transform: translateY(-4px);
 }
 
-.destination-card img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 8px;
-  margin-bottom: 0.75rem;
+.trip-card h2 {
+  font-size: 1.7rem;
+  color: #0077b6;
+  margin-bottom: 8px;
 }
 
-.destination-card h3 {
-  font-size: 1.25rem;
-  margin-bottom: 0.5rem;
-  color: #2b6cb0;
+.trip-card p {
+  font-size: 1rem;
+  margin-bottom: 15px;
+  color: #333;
 }
 
-.destination-card p {
-  font-size: 0.95rem;
-  color: #555;
+/* Buttons grouped vertically */
+.button-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 15px;
 }
-.clear-button {
-  background-color: #e74c3c;
-  color: white;
+
+button {
   padding: 10px 16px;
   border: none;
-  border-radius: 8px;
-  margin-bottom: 20px;
-  font-weight: bold;
+  background-color: #0077b6;
+  color: #fff;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  width: 140px;
+  text-align: center;
 }
 
-.clear-button:hover {
+button:hover {
+  background-color: #005f8b;
+  transform: scale(1.03);
+}
+
+.delete-button {
+  background-color: #e74c3c;
+}
+
+.delete-button:hover {
   background-color: #c0392b;
+}
+
+.itinerary-details {
+  margin-top: 18px;
+  font-size: 1rem;
+  white-space: pre-wrap;
+  line-height: 1.6;
+  color: #444;
+  background-color: #ffffff;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
 }
